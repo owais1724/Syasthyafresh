@@ -1,0 +1,19 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="300" fill="#F9F8F4"/>
+  <rect x="120" y="80" width="60" height="80" rx="10" fill="#1AA60B" opacity="0.2"/>
+  <circle cx="150" cy="70" r="8" fill="#7C3225"/>
+  <path d="M150 70 L150 80" stroke="#7C3225" stroke-width="2"/>
+  <rect x="130" y="90" width="40" height="50" fill="#E8F5E8"/>
+  <circle cx="140" cy="105" r="3" fill="#1AA60B"/>
+  <circle cx="150" cy="105" r="3" fill="#1AA60B"/>
+  <circle cx="160" cy="105" r="3" fill="#1AA60B"/>
+  <circle cx="140" cy="115" r="3" fill="#1AA60B"/>
+  <circle cx="150" cy="115" r="3" fill="#1AA60B"/>
+  <circle cx="160" cy="115" r="3" fill="#1AA60B"/>
+  <circle cx="140" cy="125" r="3" fill="#1AA60B"/>
+  <circle cx="150" cy="125" r="3" fill="#1AA60B"/>
+  <circle cx="160" cy="125" r="3" fill="#1AA60B"/>
+  <text x="150" y="200" font-family="serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#333333">Detox</text>
+  <text x="150" y="225" font-family="serif" font-size="18" font-weight="bold" text-anchor="middle" fill="#333333">Drinks</text>
+  <text x="150" y="260" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#1AA60B">Coming Soon</text>
+</svg>

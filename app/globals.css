@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+
+  --color-ivory: #F9F8F4;
+  --color-olive: #1AA60B;
+  --color-beige: #DDBEA9;
+  --color-earth: #A5A58D;
+  --color-brown: #7C3225;
+  --color-charcoal: #333333;
+}
+
+/* Traditional CSS color definitions for compatibility */
+:root {
+  --background: var(--color-ivory, #F9F8F4);
+  --foreground: var(--color-charcoal, #333333);
+  
+  /* Custom color variables */
+  --color-olive: #1AA60B;
+  --color-brown: #7C3225;
+  --color-ivory: #F9F8F4;
+  --color-beige: #DDBEA9;
+  --color-earth: #A5A58D;
+  --color-charcoal: #333333;
+}
+
+/* Force color application */
+.text-olive { color: #1AA60B !important; }
+.text-brown { color: #7C3225 !important; }
+.bg-olive { background-color: #1AA60B !important; }
+.bg-brown { background-color: #7C3225 !important; }
+.hover\:text-olive:hover { color: #1AA60B !important; }
+.hover\:text-brown:hover { color: #7C3225 !important; }
+.hover\:bg-olive:hover { background-color: #1AA60B !important; }
+.hover\:bg-brown:hover { background-color: #7C3225 !important; }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/images/bg-pattern.png');
+  background-repeat: repeat;
+  background-size: 500px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+  /* Behind content, on top of body bg */
+  mix-blend-mode: multiply;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+  /* Offset for sticky header (96px) + extra space */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  letter-spacing: -0.02em;
+  /* Tight tracking */
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.6;
+  /* Generous line height */
+}
