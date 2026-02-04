@@ -39,7 +39,7 @@ export default function Footer() {
     }, []);
 
     return (
-        <footer ref={sectionRef} className="bg-charcoal text-ivory pt-16 pb-8">
+        <footer ref={sectionRef} className="bg-brown text-ivory pt-16 pb-8">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
                     {/* Brand */}

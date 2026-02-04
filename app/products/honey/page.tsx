@@ -40,9 +40,9 @@ export default function HoneyPage() {
                                     <p className="text-earth text-sm mb-4">{product.desc}</p>
                                     <div className="flex justify-between items-center">
                                         <p className="text-lg text-olive font-bold">₹{product.price}</p>
-                                        <button className="text-charcoal hover:text-olive transition-colors font-medium">
+                                        <span className="text-charcoal hover:text-olive transition-colors font-medium">
                                             View Details
-                                        </button>
+                                        </span>
                                     </div>
                                 </div>
                             </Link>

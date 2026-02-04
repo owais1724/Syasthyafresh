@@ -63,7 +63,7 @@ export default function About() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="about" className="py-24 bg-olive text-ivory">
+        <section ref={sectionRef} id="about" className="py-24 bg-earth text-ivory">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div ref={textRef} className="space-y-8 opacity-100">

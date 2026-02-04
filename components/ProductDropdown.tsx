@@ -23,7 +23,7 @@ const ProductDropdown = () => {
         <div ref={dropdownRef} className="relative">
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-1 text-charcoal hover:text-olive transition-colors duration-300 font-serif tracking-wide text-base font-bold"
+                className="flex items-center gap-1 text-charcoal hover:text-olive transition-colors duration-300 font-serif tracking-wide text-base font-medium"
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >

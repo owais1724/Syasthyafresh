@@ -2,9 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import gsap from "gsap";
-import { Leaf, ShieldCheck, Zap } from "lucide-react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Leaf, Zap, ShieldCheck, ChevronRight, Star } from "lucide-react";
+import Link from "next/link";
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Using the product images we generated which have white backgrounds.
 // On the Ivory background, we can use mix-blend-multiply to make them look transparent.
@@ -174,7 +177,7 @@ export default function Hero() {
     }, [currentSlide]);
 
     return (
-        <section className="relative h-[90vh] min-h-[700px] w-full overflow-hidden pt-20 z-40" ref={containerRef}>
+        <section className="relative h-[85vh] min-h-[650px] w-full overflow-hidden pt-36 z-30" ref={containerRef}>
             {SLIDES.map((slide, index) => (
                 <div
                     key={slide.id}
@@ -187,11 +190,25 @@ export default function Hero() {
                     <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center relative z-10 w-full">
                         {/* Left Content */}
                         <div className="hero-content space-y-8 md:pl-8 pt-8">
-                            <div className="space-y-4">
+                            <div className="space-y-6">
+                                <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+                                    <span className="text-sm font-medium text-ivory/90">{slide.subtitle}</span>
+                                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                </div>
+
                                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-charcoal leading-tight">
                                     {slide.title} <br />
                                     <span className="text-charcoal">{slide.highlight}</span>
                                 </h1>
+
+                                <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-1">
+                                        {[...Array(5)].map((_, i) => (
+                                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                        ))}
+                                    </div>
+                                    <span className="text-sm text-earth/70">4.8 (2,341 reviews)</span>
+                                </div>
                             </div>
 
                             <p className="text-lg text-earth/80 max-w-md leading-relaxed">
@@ -199,24 +216,28 @@ export default function Hero() {
                             </p>
 
                             {/* Features (Icons) */}
-                            <div className="flex gap-8 py-4">
+                            <div className="flex gap-6 py-4">
                                 {slide.features.map((feature, i) => (
-                                    <div key={i} className="flex flex-col items-center gap-2">
-                                        <div className="w-12 h-12 rounded-full bg-white/60 flex items-center justify-center text-olive shadow-sm">
-                                            <feature.icon className="w-6 h-6" />
-                                        </div>
-                                        <span className="text-xs font-medium uppercase tracking-wider text-charcoal/70">{feature.label}</span>
+                                    <div key={i} className="flex items-center gap-2 text-charcoal/80">
+                                        <feature.icon className="w-5 h-5 text-olive" />
+                                        <span className="text-sm font-medium">{feature.label}</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <div className="pt-4 flex gap-4">
-                                <Link href="#products" className="px-8 py-4 bg-charcoal text-ivory rounded-full text-lg font-medium hover:bg-olive transition-colors shadow-lg">
+                            {/* CTA Buttons */}
+                            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                                <Link
+                                    href="/products"
+                                    className="inline-flex items-center gap-2 px-8 py-4 bg-olive text-white rounded-full font-semibold hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                                >
                                     Shop Now
+                                    <ChevronRight className="w-5 h-5" />
                                 </Link>
-                                <Link href="#about" className="px-8 py-4 border border-charcoal/20 text-charcoal rounded-full text-lg font-medium hover:bg-charcoal/5 transition-colors">
+                                <button className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-charcoal border border-white/20 rounded-full font-semibold hover:bg-white/20 transition-all duration-300">
                                     Learn More
-                                </Link>
+                                    <ChevronRight className="w-5 h-5" />
+                                </button>
                             </div>
                         </div>
 
@@ -241,7 +262,7 @@ export default function Hero() {
             ))}
 
             {/* Slide Indicators/Navigation */}
-            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 md:left-24 md:translate-x-0 z-[20] flex gap-4">
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-[20] flex gap-4">
                 {SLIDES.map((_, index) => (
                     <button
                         key={index}

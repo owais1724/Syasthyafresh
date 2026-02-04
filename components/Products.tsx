@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import Link from "next/link";
+import { Star, ShoppingCart, Heart, ArrowRight, Sparkles, Shield, Truck } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,7 +139,7 @@ export default function Products() {
     };
 
     return (
-        <section ref={sectionRef} id="products" className="pt-20 pb-4 overflow-hidden relative z-10">
+        <section ref={sectionRef} id="products" className="pt-24 pb-4 overflow-hidden relative z-20">
             {/* Main Products Heading */}
             <div className="container mx-auto px-6 mb-8">
                 <h1 className="text-4xl md:text-5xl font-serif text-charcoal mb-4 text-center">Our Products</h1>
@@ -159,23 +159,43 @@ export default function Products() {
                                 categoryRefsArray.current[catIndex] = el;
                             }
                         }}
-                        className="relative scroll-mt-24 opacity-100"
+                        className="relative scroll-mt-28 opacity-100"
                     >
-                        {/* Category Header - Centered as per reference */}
-                        <div className="container mx-auto px-6 mb-4 text-center">
-                            <h3 className="text-3xl md:text-4xl font-serif text-charcoal mb-2">
+                        {/* Category Header - Enhanced with Eatopia style */}
+                        <div className="container mx-auto px-6 mb-8 text-center">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 bg-olive/10 rounded-full mb-4">
+                                <Sparkles className="w-4 h-4 text-olive" />
+                                <span className="text-sm font-medium text-olive">
+                                    {cat.category === "Honey" ? "Pure & Natural" : cat.category === "Chikki" ? "Traditional Goodness" : "Coming Soon"}
+                                </span>
+                            </div>
+                            <h3 className="text-4xl md:text-5xl font-serif text-charcoal mb-3">
                                 {cat.category === "Honey" ? "Pure Honey Collection" : cat.category === "Chikki" ? "Handcrafted Chikki" : "Coming Soon"}
                             </h3>
-                            <p className="text-earth text-base">
+                            <p className="text-earth text-lg mb-6">
                                 {cat.category === "Honey" ? "100% Natural & Pure Honey Varieties" : cat.category === "Chikki" ? "Traditional Organic Sweet Treats" : "Exciting New Products Launching Soon"}
                             </p>
+
+                            {/* Trust badges for existing products */}
+                            {cat.category !== "Coming Soon" && (
+                                <div className="flex items-center justify-center gap-8 text-sm text-earth/70">
+                                    <div className="flex items-center gap-1">
+                                        <Shield className="w-4 h-4" />
+                                        <span>100% Authentic</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <Truck className="w-4 h-4" />
+                                        <span>Free Shipping</span>
+                                    </div>
+                                </div>
+                            )}
                         </div>
 
                         {/* Scrollable Container */}
-                        <div className="relative pl-6 md:pl-[calc((100vw-1280px)/2+24px)]">
+                        <div className="relative w-full">
                             <div
                                 id={`scroll-container-${cat.category}`}
-                                className="flex gap-6 overflow-x-auto pb-6 pr-6 hide-scrollbar scroll-smooth snap-x"
+                                className="flex gap-6 overflow-x-auto pb-6 px-6 hide-scrollbar scroll-smooth snap-x"
                                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                             >
                                 {cat.items.map((product, prodIndex) => (
@@ -184,9 +204,9 @@ export default function Products() {
                                         ref={el => { if (el) productRefs.current[prodIndex + (catIndex * cat.items.length)] = el }}
                                         className="min-w-[280px] md:min-w-[340px] group cursor-pointer snap-start opacity-100 hover:shadow-xl transition-all duration-500"
                                     >
-                                        <Link href={`/products/${product.id}`} className="block w-full h-full">
+                                        <Link href={`/products/${product.id}`} className="block w-full h-full group">
                                             <div className="flex flex-col w-full bg-white rounded-xl overflow-hidden transition-all duration-500 hover:shadow-xl border border-earth/10">
-                                                {/* Image Container - Fixed 1:1 Aspect Ratio with Premium Background */}
+                                                {/* Image Container - Enhanced with badges */}
                                                 <div className="relative aspect-square w-full bg-[#FAFAF5] overflow-hidden">
                                                     <div className="absolute inset-0 p-6 md:p-8 flex items-center justify-center transition-transform duration-700 ease-out group-hover:scale-[1.03]">
                                                         <div className="relative w-full h-full drop-shadow-sm group-hover:drop-shadow-md transition-all duration-500">
@@ -199,14 +219,29 @@ export default function Products() {
                                                         </div>
                                                     </div>
 
-                                                    {/* Hover Overlay / Action */}
+                                                    {/* Hover Overlay */}
                                                     <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                                    
+                                                    {/* Quick actions overlay */}
+                                                    <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                        <button className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-ivory transition-colors">
+                                                            <Heart className="w-4 h-4 text-charcoal" />
+                                                        </button>
+                                                        <button className="w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-ivory transition-colors">
+                                                            <ShoppingCart className="w-4 h-4 text-charcoal" />
+                                                        </button>
+                                                    </div>
                                                 </div>
 
-                                                {/* Card Info - Stacked Below */}
+                                                {/* Card Info - Enhanced */}
                                                 <div className="flex flex-col p-6 bg-white border-t border-earth/5">
-                                                    <div className="flex justify-between items-start mb-2">
+                                                    <div className="flex justify-between items-start mb-3">
                                                         <h3 className="text-xl font-serif text-charcoal group-hover:text-olive transition-colors line-clamp-1">{product.name}</h3>
+                                                        <div className="flex items-center gap-1">
+                                                            {[...Array(5)].map((_, i) => (
+                                                                <Star key={i} className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                                                            ))}
+                                                        </div>
                                                     </div>
 
                                                     <p className="text-sm text-earth/80 line-clamp-2 mb-4 h-10 leading-relaxed">
@@ -214,10 +249,14 @@ export default function Products() {
                                                     </p>
 
                                                     <div className="flex justify-between items-center mt-auto">
-                                                        <p className="text-lg text-olive font-bold">₹{product.price}</p>
-                                                        <span className="text-xs text-charcoal/60 uppercase tracking-widest font-medium group-hover:text-olive transition-colors duration-300 border-b border-transparent group-hover:border-olive">
-                                                            View Details
-                                                        </span>
+                                                        <div className="flex items-baseline gap-2">
+                                                            <p className="text-lg text-olive font-bold">₹{product.price}</p>
+                                                            <span className="text-xs text-earth/60">per unit</span>
+                                                        </div>
+                                                        <div className="flex items-center gap-2 text-charcoal/60 hover:text-olive transition-colors duration-300">
+                                                            <span className="text-xs font-medium border-b border-transparent group-hover:border-olive">View Details</span>
+                                                            <ArrowRight className="w-3 h-3" />
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
